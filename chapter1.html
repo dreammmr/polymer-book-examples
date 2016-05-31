@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Chapter 1 Examples</title>
+  	<link rel="stylesheet" href="vendor/css/materialize.min.css">
+  	<link rel="stylesheet" type="text/css" href="vendor/css/prism.css">
+</head>
+<body>
+	<style>
+		.tabs {
+			background-color: transparent;
+		}
+		.tabs .tab a {
+			color: teal;
+		}
+		.tabs .tab a:hover {
+			color: teal;
+		}
+		.tabs .indicator {
+			background-color: teal;
+		}
+		.example {
+			background-color: #ececec;
+			padding: 10px;
+			border-radius: 3px;
+			border: 1px solid rgba(0,0,0,.2);
+			margin-top: 20px;
+		}
+		.example-page {
+			margin-top: 10px;
+		}
+	</style>
+
+	<div class="container">
+		<div class="row">
+			<h3 class="teal-text">Chapter 1: Web Components</h3>
+			<h4>TEMPLATES</h4>
+
+			<div class="example" id="example1">
+				<h5>Example 1</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo1">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source1">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo1" class="col s12 example-page">
+				    	<template class="superman">
+							<div style="text-align: center"> 
+								<img align="center" src="assets/img/superman.png" class="animated_superman" />
+							</div> 
+						</template>
+						<script>
+							// selecting the template element with querySelector()
+							var tmpl = document.querySelector('.superman');
+							//getting the <template> content
+							var content = tmpl.content;
+							// making some changes in the content
+							content.querySelector('.animated_superman').width = 200;
+
+							// appending the template to the body
+							tmpl.parentNode.appendChild(content);
+						</script>
+
+				    </div>
+				    <div id="source1" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;template class=&#x22;superman&#x22;&#x3E;
+	&#x3C;div&#x3E; 
+		&#x3C;img src=&#x201D;assets/img/superman.png&#x201D; class=&#x201D;animated_superman&#x201D; /&#x3E;
+	&#x3C;/div&#x3E; 
+&#x3C;/template&#x3E;
+
+&#x3C;script&#x3E;
+&#x9;// selecting the template element with querySelector()
+&#x9;var tmpl = document.querySelector('.superman');
+&#x9;//getting the &#x3C;template&#x3E; content
+&#x9;var content = tmpl.content;
+&#x9;// making some changes in the content
+&#x9;content.querySelector('.animated_superman').width = 200;
+
+&#x9;// appending the template to the body
+&#x9;document.body.appendChild(content);
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+
+			</div>
+
+			<h4>SHADOW DOM</h4>
+
+			<div class="example" id="example2">
+				<h5>Example 2</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo2">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source2">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo2" class="col s12 example-page">
+				    	<style>
+							.example2 input::-webkit-datetime-edit {
+							  background: red;
+							}
+						</style>
+
+						<input type="date"/>
+				    </div>
+				    <div id="source2" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;style&#x3E;
+	.example2 input::-webkit-datetime-edit {
+		background: red;
+	}
+&#x3C;/style&#x3E;
+
+&#x3C;input type=&#x22;date&#x22;/&#x3E;
+</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+
+			<div class="example" id="example3">
+				<h5>Example 3</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo3">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source3">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo3" class="col s12 example-page">
+				    	<div id="example3_cont">You know why?</div>
+
+						<script>
+						  var root = example3_cont.createShadowRoot();
+						  root.innerHTML = "Because I'm Batman!";
+						</script>
+
+				    </div>
+				    <div id="source3" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;div id=&#x22;container&#x22;&#x3E;You know why?&#x3C;/div&#x3E;
+
+&#x3C;script&#x3E;
+  var root = container.createShadowRoot();
+  root.innerHTML = &#x22;Because I&#x27;m Batman!&#x22;;
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example4">
+				<h5>Example 4</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo4">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source4">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo4" class="col s12 example-page">
+				    	<div id="example4_cont">Who is coming?</div>
+
+						<script>
+						  var root = example4_cont.createShadowRoot();
+						  	  root.innerHTML = '<h1><content></content></h1><p>Winter is coming!</p>';
+						</script>
+				    </div>
+				    <div id="source4" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;div id=&#x22;container&#x22;&#x3E;Who is coming?&#x3C;/div&#x3E;
+
+&#x3C;script&#x3E;
+  var root = container.createShadowRoot();
+  &#x9;  root.innerHTML = '&#x3C;h1&#x3E;&#x3C;content&#x3E;&#x3C;/content&#x3E;&#x3C;/h1&#x3E;&#x3C;p&#x3E;Winter is coming!&#x3C;/p&#x3E;';
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example5">
+				<h5>Example 5</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo5">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source5">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo5" class="col s12 example-page">
+				    	<div id="example5_cont">
+							<h3>Once upon a time, in Westeros</h3>
+							<strong>Ruled a king by name Joffrey and he’s dead!</strong>
+						</div>
+
+						<script>
+						  var root = example5_cont.createShadowRoot();
+
+						  	  root.innerHTML = '<content select=’h3’></content> \
+								<content select=”.writer”> Jon Snow </content> \
+								<content></content>';
+						</script>
+				    </div>
+				    <div id="source5" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;div id=&#x22;container&#x22;&#x3E;
+&#x9;&#x3C;h3&#x3E;Once upon a time, in Westeros&#x3C;/h3&#x3E;
+&#x9;&#x3C;strong&#x3E;Ruled a king by name Joffrey and he&#x2019;s dead!&#x3C;/strong&#x3E;
+&#x3C;/div&#x3E;
+
+&#x3C;script&#x3E;
+	var root = container.createShadowRoot();
+
+	root.innerHTML = '&#x3C;content select=&#x2019;h3&#x2019;&#x3E;&#x3C;/content&#x3E; \
+	&#x3C;content select=&#x201D;.writer&#x201D;&#x3E; Jon Snow &#x3C;/content&#x3E; \
+	&#x3C;content&#x3E;&#x3C;/content&#x3E;';
+&#x3C;/script&#x3E;
+</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example6">
+				<h5>Example 6</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo6">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source6">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo6" class="col s12 example-page">
+				    	<div id="example6_cont">Polycasts</div>
+
+						<script>
+						  	// create a new Shadow DOM tree for element
+
+							var root = example6_cont.createShadowRoot();
+
+							root.innerHTML = '<h1><content></content></h1> <strong>Hey googlers! Let\’s code today.</strong>';
+						</script>
+
+						<script>
+							// read data from Shadow DOM for elem
+
+							var root = example6_cont.shadowRoot;
+
+							// Hey googlers! Let’s code today.
+							document.write('<br/><em>container: ' + root.querySelector('strong').innerHTML + '</em>');
+							// empty as physical nodes - is content
+							document.write('<br/><em>content: ' + root.querySelector('content').innerHTML + '</em>');
+						</script>
+				    </div>
+				    <div id="source6" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;div id=&#x22;container&#x22;&#x3E;Polycasts&#x3C;/div&#x3E;
+
+&#x3C;script&#x3E;
+	// create a new Shadow DOM tree for element
+
+	var root = container.createShadowRoot();
+
+	root.innerHTML = '&#x3C;h1&#x3E;&#x3C;content&#x3E;&#x3C;/content&#x3E;&#x3C;/h1&#x3E; &#x3C;strong&#x3E;Hey googlers! Let\&#x2019;s code today.&#x3C;/strong&#x3E;';
+&#x3C;/script&#x3E;
+
+&#x3C;script&#x3E;
+	// read data from Shadow DOM for elem
+
+	var root = container.shadowRoot;
+
+	// Hey googlers! Let&#x2019;s code today.
+	document.write('&#x3C;br/&#x3E;&#x3C;em&#x3E;container: ' + root.querySelector(&#x27;strong&#x27;).innerHTML);
+	// empty as physical nodes - is content
+	document.write('&#x3C;br/&#x3E;&#x3C;em&#x3E;content: ' + root.querySelector(&#x27;content&#x27;).innerHTML);
+&#x3C;/script&#x3E;
+</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<h4>CUSTOM ELEMENTS</h4>
+
+			<div class="example" id="example7">
+				<h5>Example 7</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo7">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source7">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo7" class="col s12 example-page">
+				    	<style>
+							show-got {
+								display: inline-block;
+							}
+				    	</style>
+						<show-got character="jon-snow"></show-got>
+						<show-got character="daenerys-targaryen"></show-got>
+						<show-got character="robb-stark"></show-got>
+
+						<script>
+							var character = Object.create(HTMLElement.prototype);
+							character.show = function(){
+							    // Creating info text
+							    var info = document.createElement('p');
+							    info.innerHTML = 'Hover me to feel the GOT!';
+							    var person = this.getAttribute('character');
+							    img = document.createElement('img');
+							    img.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/' + person + '.png';
+							    img.width = 300;
+							    img.height = 240;
+							    this.appendChild(img);
+							    this.appendChild(info);
+							    
+							    this.onmouseover = function(){
+							        this.audio.play();
+							        info.innerHTML = ":) " + person;        
+							    };
+							    this.onmouseout = function(){
+							        this.audio.pause();
+							        info.innerHTML = ":( " + person;
+							    };
+							};
+							character.audio = new Audio('https://upload.wikimedia.org/wikipedia/en/a/a8/Game_of_Thrones_Main_Title_sample.ogg');
+
+							document.registerElement('show-got', {prototype: character});
+
+							var got_s = document.querySelectorAll('show-got');
+							
+							for(var i = 0; i < got_s.length; i++) {
+								got_s[i].show();
+							}
+						</script>
+				    </div>
+				    <div id="source7" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;!-- Creating Game of Thrones character tag --&#x3E;
+&#x3C;!-- You can use names like (cersei-lannister, robb-stark, jon-snow, jamie-lannister, tyrion-lannister, daenerys-targaryen) --&#x3E;
+&#x3C;show-got id=&#x22;showGot&#x22; character=&#x22;robb-stark&#x22;&#x3E;&#x3C;/show-got&#x3E;
+
+&#x3C;script&#x3E;
+var character = Object.create(HTMLElement.prototype);
+character.show = function(){
+    // Creating info text
+    var info = document.createElement(&#x27;p&#x27;);
+    info.innerHTML = &#x27;Hover me to feel the GOT!&#x27;;
+    var person = this.getAttribute(&#x27;character&#x27;);
+    img = document.createElement(&#x27;img&#x27;);
+    img.src = &#x27;https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/&#x27; + person + &#x27;.png&#x27;;
+    img.width = 300;
+    img.height = 240;
+    this.appendChild(img);
+    this.appendChild(info);
+    
+    this.onmouseover = function(){
+        this.audio.play();
+        info.innerHTML = &#x22;:) &#x22; + person;        
+    };
+    this.onmouseout = function(){
+        this.audio.pause();
+        info.innerHTML = &#x22;:( &#x22; + person;
+    };
+};
+character.audio = new Audio(&#x27;https://upload.wikimedia.org/wikipedia/en/a/a8/Game_of_Thrones_Main_Title_sample.ogg&#x27;);
+
+
+document.registerElement(&#x27;show-got&#x27;, {prototype: character});
+showGot.show();
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example8">
+				<h5>Example 8</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo8">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source8">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo8" class="col s12 example-page">
+						<style>
+						  /* Style for: unresolved element (prior to registration) */
+						  say-hello:unresolved {
+						    color: white;
+						    background: #cc0000;
+						  }
+						  say-hello {
+						    transition: all 4s;
+						  }
+						</style>
+						<say-hello id="hello">Hey, guys!</say-hello>
+						<script>
+						  // Registration will take place in 3 seconds
+						  setTimeout(function() {
+						    document.registerElement("say-hello", {
+						      prototype: {
+						        __proto__: HTMLElement.prototype,
+						        sayHelloAgain: function() { console.log('I said HEY!'); }
+						      }
+						    });
+
+						    // the new type of elements is a method sayHelloAgain
+						    hello.sayHelloAgain();
+						  }, 3000);
+
+						</script>
+				    </div>
+				    <div id="source8" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;style&#x3E;
+  /* Style for: unresolved element (prior to registration) */
+  say-hello:unresolved {
+    color: white;
+    background: #cc0000;
+  }
+  say-hello {
+    transition: all 4s;
+  }
+&#x3C;/style&#x3E;
+&#x3C;say-hello id=&#x22;hello&#x22;&#x3E;Hey, guys!&#x3C;/say-hello&#x3E;
+&#x3C;script&#x3E;
+  // Registration will take place in 3 seconds
+  setTimeout(function() {
+    document.registerElement(&#x22;say-hello&#x22;, {
+      prototype: {
+        __proto__: HTMLElement.prototype,
+        sayHelloAgain: function() { console.log(&#x27;I said HEY!&#x27;); }
+      }
+    });
+
+    // the new type of elements is a method sayHelloAgain
+    hello.sayHelloAgain();
+  }, 3000);
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example9">
+				<h5>Example 9</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo9">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source9">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo9" class="col s12 example-page">
+				    	<script>
+						  var proto = Object.create(HTMLButtonElement.prototype);
+						  proto.count = function() {
+						    this.innerHTML++;
+						  };	
+
+						  document.registerElement("timer-tag", {
+						    prototype: proto,
+						    extends: 'button'
+						  });
+						</script>
+
+						<button is="timer-tag" id="counter">0</button>
+
+						<script>
+						  setInterval(function() {
+						    counter.count();
+						  }, 1000);
+
+						  counter.onclick = function() {
+						    alert("Current value: " + this.innerHTML);
+						  };
+						</script>
+				    </div>
+				    <div id="source9" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;script&#x3E;
+  var proto = Object.create(HTMLButtonElement.prototype);
+  proto.count = function() {
+    this.innerHTML++;
+  };&#x9;
+
+  document.registerElement(&#x22;timer-tag&#x22;, {
+    prototype: proto,
+    extends: &#x27;button&#x27;
+  });
+&#x3C;/script&#x3E;
+
+&#x3C;button is=&#x22;timer-tag&#x22; id=&#x22;counter&#x22;&#x3E;0&#x3C;/button&#x3E;
+
+&#x3C;script&#x3E;
+  setInterval(function() {
+    counter.count();
+  }, 1000);
+
+  counter.onclick = function() {
+    alert(&#x22;Current value: &#x22; + this.innerHTML);
+  };
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example10">
+				<h5>Example 10</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo10">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source10">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo10" class="col s12 example-page">
+				    	<script>
+						  var proto = Object.create(HTMLElement.prototype);
+
+						  proto.count = function() {
+						    this.counter++;
+						    this.innerHTML = this.counter;
+						  };
+
+						  proto.createdCallback = function() {
+						    this.counter = 0;
+						  };
+
+						  proto.attachedCallback = function() {
+						    setInterval(this.count.bind(this), 1000);
+						  };
+
+						  document.registerElement("timer-tag-2", {
+						    prototype: proto
+						  });
+						</script>
+
+						<timer-tag-2 id="timer">0</timer-tag>
+				    </div>
+				    <div id="source10" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;script&#x3E;
+  var proto = Object.create(HTMLElement.prototype);
+
+  proto.count = function() {
+    this.counter++;
+    this.innerHTML = this.counter;
+  };
+
+  proto.createdCallback = function() {
+    this.counter = 0;
+  };
+
+  proto.attachedCallback = function() {
+    setInterval(this.count.bind(this), 1000);
+  };
+
+  document.registerElement(&#x22;timer-tag&#x22;, {
+    prototype: proto
+  });
+&#x3C;/script&#x3E;
+
+&#x3C;timer-tag id=&#x22;timer&#x22;&#x3E;0&#x3C;/timer-tag&#x3E;
+
+</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example11">
+				<h5>Example 11</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo11">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source11">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo11" class="col s12 example-page">
+					  <script>
+					    function load() {
+					      var element = link.import.querySelector('custom-tag')
+					      document.querySelector('#demo11').appendChild(element);
+					    };
+					  </script>
+					  <link rel="import" id="link" onload="load()" href="assets/imports/example11.html">
+				    </div>
+				    <div id="source11" class="col s12 example-page">
+<pre><code class="language-markup">
+index.html
+
+&#x3C;script&#x3E;
+    function load() {
+      var element = link.import.querySelector(&#x27;custom-tag&#x27;)
+      document.body.appendChild(element);
+    };
+  &#x3C;/script&#x3E;
+  &#x3C;link rel=&#x22;import&#x22; id=&#x22;link&#x22; onload=&#x22;load()&#x22; href=&#x22;import.html&#x22;&#x3E;
+
+import.html
+
+&#x3C;!DOCTYPE HTML&#x3E;
+&#x3C;html&#x3E;
+&#x3C;body&#x3E;
+  &#x3C;custom-tag id=&#x22;counter&#x22;&#x3E;0&#x3C;/custom-tag&#x3E;
+  &#x3C;script&#x3E;
+    var document = document.currentScript.ownerDocument;
+    var counter = localDocument.getElementById(&#x27;counter&#x27;);
+
+    var counterId = setInterval(function() {
+      counter.innerHTML++;
+    }, 1000);
+  &#x3C;/script&#x3E;
+&#x3C;/body&#x3E;
+&#x3C;/html&#x3E;
+
+  </code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<h4>STYLES AND SELECTORS</h4>
+
+			<div class="example" id="example12">
+				<h5>Example 12</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo12">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source12">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo12" class="col s12 example-page">
+						<p>Once upon a time,</p>
+						<p id="text">we are learned about Web Components</p>
+
+						<template id="example12_template">
+						  <style>
+						    p {
+						      color: blue;
+						    }
+						  </style>
+						  <h1><content></content></h1>
+						  <p>Hello, from Shadow Root!</p>
+						</template>
+
+						<script>
+						  var root = text.createShadowRoot();
+						  root.appendChild(example12_template.content.cloneNode(true));
+						</script>
+				    </div>
+				    <div id="source12" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;p&#x3E;Once upon a time,&#x3C;/p&#x3E;
+&#x3C;p id=&#x22;text&#x22;&#x3E;we are learned about Web Components&#x3C;/p&#x3E;
+
+&#x3C;template id=&#x22;template&#x22;&#x3E;
+  &#x3C;style&#x3E;
+    p {
+      color: blue;
+    }
+  &#x3C;/style&#x3E;
+  &#x3C;h1&#x3E;&#x3C;content&#x3E;&#x3C;/content&#x3E;&#x3C;/h1&#x3E;
+  &#x3C;p&#x3E;Hello, from Shadow Root!&#x3C;/p&#x3E;
+&#x3C;/template&#x3E;
+
+&#x3C;script&#x3E;
+  var root = text.createShadowRoot();
+  root.appendChild(template.content.cloneNode(true));
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example13">
+				<h5>Example 13</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo13">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source13">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo13" class="col s12 example-page">
+						<style>
+						  #example13_text::shadow span {
+						    /* to span within Shadow DOM #elem */
+						    border-bottom: 1px solid red;
+						  }
+						  #example13_text >>> * {
+							/* All elements within the Shadow DOM #elem continue in input [type = date] */
+							color: blue;
+						  }
+						</style>
+
+						<p id="example13_text"></p>
+
+						<script>
+						  var root = example13_text.createShadowRoot();
+						  root.innerHTML = "<span>Current date: </span> <input type='date'>";
+						</script>
+				    </div>
+				    <div id="source13" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;style&#x3E;
+  #text::shadow span {
+    /* to span within Shadow DOM #elem */
+    border-bottom: 1px solid red;
+  }
+  #text &#x3E;&#x3E;&#x3E; * {
+	/* All elements within the Shadow DOM #elem continue in input [type = date] */
+	color: blue;
+  }
+&#x3C;/style&#x3E;
+
+&#x3C;p id=&#x22;text&#x22;&#x3E;&#x3C;/p&#x3E;
+
+&#x3C;script&#x3E;
+  var root = text.createShadowRoot();
+  root.innerHTML = &#x22;&#x3C;span&#x3E;Current time:&#x3C;/span&#x3E; &#x3C;input type=&#x27;date&#x27;&#x3E;&#x22;;
+&#x3C;/script&#x3E;
+</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example14">
+				<h5>Example 14</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo14">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source14">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo14" class="col s12 example-page">
+						<style>
+						  #example14_text {
+						    color: blue;
+						    font-weight: bold;
+						  }
+						</style>
+						<p id="example14_text"></p>
+						<script>
+						  example14_text.createShadowRoot().innerHTML = "<span>Hello, Yerevan!</span>";
+						</script>
+				    </div>
+				    <div id="source14" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;style&#x3E;
+  body {
+    color: blur;
+    font-weight: bold;
+  }
+&#x3C;/style&#x3E;
+&#x3C;p id=&#x22;text&#x22;&#x3E;&#x3C;/p&#x3E;
+&#x3C;script&#x3E;
+  text.createShadowRoot().innerHTML = &#x22;&#x3C;span&#x3E;Hello, Yerevan!&#x3C;/span&#x3E;&#x22;;
+&#x3C;/script&#x3E;
+</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+			<div class="example" id="example15">
+				<h5>Example 15</h5>
+				<div class="row">
+				    <div class="col s12">
+				      <ul class="tabs">
+				        <li class="tab col s3 waves-effect waves-light"><a href="#demo15">DEMO</a></li>
+				        <li class="tab col s3 waves-effect waves-light"><a class="active" href="#source15">SOURCE</a></li>
+				      </ul>
+				    </div>
+				    <div id="demo15" class="col s12 example-page">
+						<style>
+						  #demo15 span { border: 1px solid black; }
+						</style>
+
+						<p id="example15_text"><strong>Valar Marghulis!</strong></p>
+
+						<template id="example15_template">
+						  <style>
+						    ::content strong { color: green; }
+						  </style>
+						  <h1><content></content></h1>
+						  <span>Valar Dohaeris!</span>
+						</template>
+
+						<script>
+						  example15_text.createShadowRoot().appendChild( example15_template.content.cloneNode(true) );
+						</script>
+
+				    </div>
+				    <div id="source15" class="col s12 example-page">
+<pre><code class="language-markup">&#x3C;style&#x3E;
+  span { border: 1px solid black; }
+&#x3C;/style&#x3E;
+
+&#x3C;p id=&#x22;text&#x22;&#x3E;&#x3C;strong&#x3E;Valar Marghulis!&#x3C;/strong&#x3E;&#x3C;/p&#x3E;
+
+&#x3C;template id=&#x22;template&#x22;&#x3E;
+  &#x3C;style&#x3E;
+    ::content strong { color: green; }
+  &#x3C;/style&#x3E;
+  &#x3C;h1&#x3E;&#x3C;content&#x3E;&#x3C;/content&#x3E;&#x3C;/h1&#x3E;
+  &#x3C;span&#x3E;Valar Dohaeris!&#x3C;/span&#x3E;
+&#x3C;/template&#x3E;
+
+&#x3C;script&#x3E;
+  text.createShadowRoot().appendChild( template.content.cloneNode(true) );
+&#x3C;/script&#x3E;</code></pre>
+				    </div>
+  				</div>
+			</div>
+
+
+
+			<!-- End -->
+		</div>
+	</div>
+
+	<!-- Creating Game of Thrones character tag -->
+<!-- You can use names like (cersei-lannister, robb-stark, jon-snow, jamie-lannister, tyrion-lannister, daenerys-targaryen) -->
+<show-got id="showGot" character="robb-stark"></show-got>
+
+	<script src="vendor/js/jquery-2.2.4.min.js"></script>
+  	<script src="vendor/js/materialize.min.js"></script>
+  	<script src="vendor/js/prism.js"></script>
+	<script>
+		$(document).ready(function () {
+			 $('ul.tabs').tabs();
+		});
+	</script>
+</body>
+</html>

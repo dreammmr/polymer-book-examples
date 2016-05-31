@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+  <custom-tag id="counter">0</custom-tag>
+  <script>
+    var document = document.currentScript.ownerDocument;
+    var counter = localDocument.getElementById('counter');
+
+    var counterId = setInterval(function() {
+      counter.innerHTML++;
+    }, 1000);
+  </script>
+</body>
+</html>
